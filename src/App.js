@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Form from './components/Form'
 
 class App extends Component {
   constructor(){
@@ -11,7 +12,6 @@ class App extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
-    this.getForm = this.getForm.bind(this)
     this.getAccountDashboard = this.getAccountDashboard.bind(this)
   }
 
@@ -37,49 +37,17 @@ class App extends Component {
     });
   }
 
-
-  getForm () {
-    return (
-      <div className="App">
-        <header className="App-header">
-          Welcome to flatfair
-        </header>
-        <form onSubmit={this.handleSubmit}>
-          <label> E-mail
-            <input
-              type="text"
-              name="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={this.handleInputChange} />
-          </label>
-          <label> Password
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleInputChange} />
-          </label>
-          <label> Re-enter Password
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Re-enter Password"
-              value={this.state.confirmPassword}
-              onChange={this.handleInputChange} />
-          </label>
-          <button name="Submit" type="submit" value="Submit">Submit</button>
-        </form>
-      </div>
-    );
-  }
-
   render() {
     return (
       this.state.isLoggedIn
       ? this.getAccountDashboard()
-      : this.getForm()
+      : <Form 
+          email={this.state.email}
+          password={this.state.password}
+          confirmPassword={this.state.confirmPassword}
+          handleInputChange={this.handleInputChange}
+          handleSubmit={this.handleSubmit}
+        />
     )
   }
 }
