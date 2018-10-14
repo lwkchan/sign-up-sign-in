@@ -10,6 +10,7 @@ class Form extends Component {
       isLoggedIn: false
     }
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.getModifierClassName = this.getModifierClassName.bind(this)
   }
 
   handleInputChange(event) {
@@ -20,13 +21,21 @@ class Form extends Component {
     });
   }
 
+  getModifierClassName({props}){
+    const elementBase = 'form__'
+    if (props.signUp) {
+      return `${elementBase}sign-up`
+    }
+    if (props.signIn) {
+      return `${elementBase}sign-in`
+    }
+  }
+
   render() {
     return (
       <>
       <form
-        className={this.props.signUp 
-                    ? 'form__sign-up' : this.props.signIn
-                    ? 'form__sign-in' : 'form'}
+        className={`form ${this.getModifierClassName(this)}`}
         onSubmit={this.props.handleSubmit}>
         <label> E-mail
           <input
