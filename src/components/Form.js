@@ -39,7 +39,7 @@ class Form extends Component {
 			<form
 			className={`form ${this.getModifierClassName(this)}`}
 			onSubmit={this.props.handleSubmit}>
-				<label> E-mail
+				<label> Email
 					<input
 					type="text"
 					name="email"
