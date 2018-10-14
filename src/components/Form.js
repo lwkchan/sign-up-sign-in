@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class Form extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       email: '',
@@ -14,14 +14,14 @@ class Form extends Component {
   }
 
   handleInputChange(event) {
-    const target = event.target;
-    const { value, name } = target;
+    const { target } = event,
+    { value, name } = target
     this.setState({
       [name]: value
-    });
+    })
   }
 
-  getModifierClassName({props}){
+  getModifierClassName({ props }) {
     const elementBase = 'form__'
     if (props.signUp) {
       return `${elementBase}sign-up`
@@ -66,8 +66,8 @@ class Form extends Component {
         <button name="Submit" type="submit" value="Submit">Submit</button>
       </form>
       </>
-      );
+      )
     }
   }
-  
+
   export default Form

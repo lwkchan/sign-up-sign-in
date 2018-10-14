@@ -4,7 +4,7 @@ class AccountDashboard extends Component {
 	render(){
 		return (
 			<div data-testid='account-dashboard' >
-			<p>Hello {this.props.email}</p>
+				<p>Hello {this.props.email}</p>
 			</div>
 		)
 	}
