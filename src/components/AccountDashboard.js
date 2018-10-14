@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class AccountDashboard extends Component {
-	render(){
+	render() {
 		return (
-			<div data-testid='account-dashboard' >
+			<div data-testid="account-dashboard" >
 				<p>Hello {this.props.email}</p>
 			</div>
 		)

@@ -314,6 +314,7 @@
         "yoda": [
             "error",
             "never"
-        ]
+        ],
+        "react/prop-types":"off"
     }
 }

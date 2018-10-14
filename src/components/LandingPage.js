@@ -11,7 +11,7 @@ class LandingPage extends Component {
         <h2>Got an account already? <Link to="sign-in" >Go to sign in.</Link></h2>
         <h2>Don't have an account yet? <Link to="sign-up" >Go to sign up.</Link></h2>
       </div>
-    ) 
+    )
 }
 }
 
