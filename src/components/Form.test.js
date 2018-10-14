@@ -17,8 +17,14 @@ describe('Form', () => {
 
         expect(passwordInput).toHaveLength(1)
     })
-    it('Has one confirm password input', () => {
+    it('Has no confirm password input', () => {
         const { queryAllByText } = render(<Form/>),
+        confirmPasswordInput = queryAllByText('Re-enter Password')
+        
+        expect(confirmPasswordInput).toHaveLength(0)
+    })
+    it('Has one confirm password input when the signUp prop is true', () => {
+        const { queryAllByText } = render(<Form signUp/>),
         confirmPasswordInput = queryAllByText('Re-enter Password')
 
         expect(confirmPasswordInput).toHaveLength(1)
