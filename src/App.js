@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
 import Form from './components/Form'
+import LandingPage from './components/LandingPage'
+import { Router } from '@reach/router'
 
 class App extends Component {
   constructor(){
     super()
     this.state = {
       email: '',
-      password: '',
-      confirmPassword: '',
       isLoggedIn: false
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleSignInSubmit = this.handleSignInSubmit.bind(this)
+    this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this)
     this.getAccountDashboard = this.getAccountDashboard.bind(this)
   }
 
-  handleSubmit () {
+  handleSignInSubmit (event) {
+    event.preventDefault();
+    console.log(event)
+    this.setState({isLoggedIn: true})
+  }
+
+  handleSignUpSubmit (event) {
+    event.preventDefault();
+    console.log(event)
     this.setState({isLoggedIn: true})
   }
 
@@ -27,27 +35,13 @@ class App extends Component {
     )
   }
 
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
-
   render() {
     return (
-      this.state.isLoggedIn
-      ? this.getAccountDashboard()
-      : <Form 
-          email={this.state.email}
-          password={this.state.password}
-          confirmPassword={this.state.confirmPassword}
-          handleInputChange={this.handleInputChange}
-          handleSubmit={this.handleSubmit}
-        />
+      <Router>
+        <LandingPage path='/'/>
+        <Form signIn path='sign-in' handleSubmit={this.handleSignInSubmit}/>
+        <Form signUp path='sign-up' handleSubmit={this.handleSignUpSubmit}/>
+      </Router>
     )
   }
 }
