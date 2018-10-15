@@ -5,9 +5,9 @@ class SignInPage extends Component {
     render() {
         return (
             <Form
-                signUp
+                signIn
                 path="sign-in"
-                handleSubmit={this.props.handleSignInSubmit}
+                handleSubmit={this.props.handleSubmit}
                 error={this.props.error}/>
         )
     }

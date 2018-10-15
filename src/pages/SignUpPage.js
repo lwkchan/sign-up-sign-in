@@ -7,7 +7,7 @@ class SignUpPage extends Component {
             <Form
                 signUp
                 path="sign-up"
-                handleSubmit={this.props.handleSignUpSubmit}
+                handleSubmit={this.props.handleSubmit}
                 error={this.props.error}/>
         )
     }
