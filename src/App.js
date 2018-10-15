@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import firebase from 'firebase'
 import firebaseConfig from './utils/.firebase-config'
 import AccountDashboard from './components/AccountDashboard'
-import Form from './components/Form'
 import LandingPage from './pages/LandingPage'
+import SignInPage from './pages/SignInPage'
 import SignUpPage from './pages/SignUpPage'
 import { Router, navigate } from '@reach/router'
 
@@ -62,7 +62,7 @@ class App extends Component {
 		return (
 			<Router>
 				<LandingPage path="/"/>
-				<Form signIn
+				<SignInPage
 					path="sign-in"
 					handleSubmit={this.handleSignInSubmit}
 					error={this.state.error}/>
