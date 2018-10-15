@@ -26,8 +26,22 @@ class App extends Component {
 
 	handleSignInSubmit (event) {
 		event.preventDefault()
-		this.setState({ isLoggedIn: true })
-		navigate('account-dashboard')
+		const { elements } = event.target,
+		email = elements.email.value,
+		password = elements.password.value
+		firebase.auth().signInWithEmailAndPassword(email, password)
+		.then(() => {
+			this.setState({
+				email,
+				isLoggedIn: true,
+				error: ''
+			})
+			navigate('account-dashboard')
+		})
+		.catch(error => {
+			const { message } = error
+			this.setState({ error: { message } })
+		})
 	}
 
 	handleSignUpSubmit (event) {
@@ -48,7 +62,8 @@ class App extends Component {
 			.then(() => {
 				this.setState({
 					email,
-					isLoggedIn: true
+					isLoggedIn: true,
+					error: ''
 				})
 				navigate('account-dashboard')
 			})
