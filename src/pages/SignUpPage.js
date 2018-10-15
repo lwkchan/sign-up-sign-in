@@ -4,6 +4,7 @@ import Form from '../components/Form'
 class SignUpPage extends Component {
     render() {
         return (
+            <h1>Create an account</h1>
             <Form
                 signUp
                 path="sign-up"
