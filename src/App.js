@@ -3,7 +3,8 @@ import firebase from 'firebase'
 import firebaseConfig from './utils/.firebase-config'
 import AccountDashboard from './components/AccountDashboard'
 import Form from './components/Form'
-import LandingPage from './components/LandingPage'
+import LandingPage from './pages/LandingPage'
+import SignUpPage from './pages/SignUpPage'
 import { Router, navigate } from '@reach/router'
 
 class App extends Component {
@@ -65,7 +66,7 @@ class App extends Component {
 					path="sign-in"
 					handleSubmit={this.handleSignInSubmit}
 					error={this.state.error}/>
-				<Form signUp
+				<SignUpPage
 					path="sign-up"
 					handleSubmit={this.handleSignUpSubmit}
 					error={this.state.error}/>
