@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
 import firebaseConfig from './utils/.firebase-config'
-import AccountDashboard from './components/AccountDashboard'
+import AccountPage from './pages/AccountPage'
 import LandingPage from './pages/LandingPage'
 import SignInPage from './pages/SignInPage'
 import SignUpPage from './pages/SignUpPage'
@@ -26,8 +26,8 @@ class App extends Component {
 
 	handleSignInSubmit (event) {
 		event.preventDefault()
-
 		this.setState({ isLoggedIn: true })
+		navigate('account-dashboard')
 	}
 
 	handleSignUpSubmit (event) {
@@ -45,16 +45,16 @@ class App extends Component {
 
 	createNewUser(email, password) {
 		firebase.auth().createUserWithEmailAndPassword(email, password)
-				.then(() => {
-					this.setState({
-						email,
-						isLoggedIn: true
-					})
-					navigate('account-dashboard')
+			.then(() => {
+				this.setState({
+					email,
+					isLoggedIn: true
 				})
-				.catch(error => {
-					const { message } = error
-					this.setState({ error: { message } })
+				navigate('account-dashboard')
+			})
+			.catch(error => {
+				const { message } = error
+				this.setState({ error: { message } })
 		})
 	}
 
@@ -70,7 +70,9 @@ class App extends Component {
 					path="sign-up"
 					handleSubmit={this.handleSignUpSubmit}
 					error={this.state.error}/>
-				<AccountDashboard path="account-dashboard" email={this.state.email}/>
+				<AccountPage
+					path="account-dashboard"
+					email={this.state.email}/>
 			</Router>
 			)
 		}
