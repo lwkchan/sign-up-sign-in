@@ -29,6 +29,10 @@ class App extends Component {
 		const { elements } = event.target,
 		email = elements.email.value,
 		password = elements.password.value
+		this.signInUser(email, password)
+	}
+
+	signInUser(email, password) {
 		firebase.auth().signInWithEmailAndPassword(email, password)
 		.then(() => {
 			this.setState({
