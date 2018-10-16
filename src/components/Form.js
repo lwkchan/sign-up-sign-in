@@ -1,4 +1,40 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
+
+const StyledForm = styled.form`
+	display: flex;
+	flex-direction: column;`,
+LabelText = styled.span`
+	font-size: 20px;
+`,
+Input = styled.input`
+	border: 1px solid #4195fc;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	min-height: 60px;
+	font-size: 20px;
+	width: 100%;
+	:focus {
+		outline: none;
+		border-color: #01A9DB;
+		box-shadow: 0 0 2px #01A9DB;
+	}
+`,
+SubmitButton = styled.button`
+	background: #4195fc;
+	border-radius: 25px;
+	box-shadow: ${props => console.log('props', props) || props.error?'0 0 2px #FA5858':''};
+	font-size: 20px;
+	height: 60px
+	margin: 0 auto;
+	outline: 0;
+	width: 50%;
+`,
+ErrorMessage = styled.p`
+	color: #FA5858;
+	text-align: center;
+`
+
 
 class Form extends Component {
 	constructor(props) {
@@ -36,38 +72,35 @@ class Form extends Component {
 	render() {
 		return (
 			<>
-			<form
-				className={`form ${this.getModifierClassName(this)}`}
-				onSubmit={this.props.handleSubmit}>
-				<label> Email
-					<input
-					type="text"
-					name="email"
-					placeholder="Email"
-					value={this.state.email}
-					onChange={this.handleInputChange} />
-				</label>
-				<label> Password
-					<input
-					type="password"
-					name="password"
-					placeholder="Password"
-					value={this.state.password}
-					onChange={this.handleInputChange} />
-				</label>
-				{this.props.signUp &&
-					<label> Re-enter Password
-					<input
-					type="password"
-					name="confirmPassword"
-					placeholder="Re-enter Password"
-					value={this.state.confirmPassword}
-					onChange={this.handleInputChange} />
+				<StyledForm
+					className={`form ${this.getModifierClassName(this)}`}
+					onSubmit={this.props.handleSubmit}>
+					<label> <LabelText>Email</LabelText>
+						<Input
+						type="text"
+						name="email"
+						value={this.state.email}
+						onChange={this.handleInputChange} />
 					</label>
-				}
-				<button name="Submit" type="submit" value="Submit">Submit</button>
-			</form>
-			{this.props.error.message}
+					<label> <LabelText>Password</LabelText>
+						<Input
+						type="password"
+						name="password"
+						value={this.state.password}
+						onChange={this.handleInputChange} />
+					</label>
+					{this.props.signUp &&
+						<label> <LabelText>Re-enter Password</LabelText>
+						<Input
+						type="password"
+						name="confirmPassword"
+						value={this.state.confirmPassword}
+						onChange={this.handleInputChange} />
+						</label>
+					}
+					<SubmitButton error={this.props.error} name="Submit" type="submit" value="Submit">Submit</SubmitButton>
+				</StyledForm>
+				<ErrorMessage>{this.props.error.message}</ErrorMessage>
 			</>
 			)
 		}
