@@ -6,6 +6,7 @@ const StyledForm = styled.form`
 	flex-direction: column;`,
 LabelText = styled.span`
 	font-size: 20px;
+	font-weight: bold;
 `,
 Input = styled.input`
 	border: 1px solid #4195fc;
@@ -23,7 +24,7 @@ Input = styled.input`
 SubmitButton = styled.button`
 	background: #4195fc;
 	border-radius: 25px;
-	box-shadow: ${props => console.log('props', props) || props.error?'0 0 2px #FA5858':''};
+	box-shadow: ${props => props.error ? '0 0 2px #FA5858':''};
 	font-size: 20px;
 	height: 60px
 	margin: 0 auto;
