@@ -6,9 +6,6 @@ import LandingPage from './pages/LandingPage'
 import SignInPage from './pages/SignInPage'
 import SignUpPage from './pages/SignUpPage'
 import { Router, navigate } from '@reach/router'
-import { ThemeProvider } from 'styled-components'
-
-import Theme from './styles/theme'
 
 class App extends Component {
 	constructor() {
@@ -83,25 +80,23 @@ class App extends Component {
 	render() {
 		return (
 			<div className="app">
-				<ThemeProvider theme={Theme}>
-					<Router>
-						<LandingPage
-							path="/"
-							error={this.state.error}
-							/>
-						<SignInPage
-							path="sign-in"
-							handleSubmit={this.handleSignInSubmit}
-							error={this.state.error}/>
-						<SignUpPage
-							path="sign-up"
-							handleSubmit={this.handleSignUpSubmit}
-							error={this.state.error}/>
-						<AccountPage
-							path="account-dashboard"
-							email={this.state.email}/>
-					</Router>
-				</ThemeProvider>
+				<Router>
+					<LandingPage
+						path="/"
+						error={this.state.error}
+						/>
+					<SignInPage
+						path="sign-in"
+						handleSubmit={this.handleSignInSubmit}
+						error={this.state.error}/>
+					<SignUpPage
+						path="sign-up"
+						handleSubmit={this.handleSignUpSubmit}
+						error={this.state.error}/>
+					<AccountPage
+						path="account-dashboard"
+						email={this.state.email}/>
+				</Router>
 			</div>
 			)
 		}
