@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Form from '../components/Form'
-import { Layout } from './layouts'
+import { Layout } from './Layout'
 
 class SignUpPage extends Component {
     render() {
