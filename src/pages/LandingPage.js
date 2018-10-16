@@ -15,7 +15,7 @@ SignInIcon = styled(SignIn)`
   height: 20px;
   margin: 5px;
 `,
-AddUserIcon = styled(UserEdit)`
+SignUpIcon = styled(UserEdit)`
   height: 20px;
   margin: 5px;
 `,
@@ -31,7 +31,7 @@ class LandingPage extends Component {
           Got an account already? <StyledLink to="sign-in">Go to sign in<SignInIcon/></StyledLink>
         </CallToAction>
         <CallToAction>
-          Don't have an account yet? <StyledLink to="sign-up" >Go to sign up<AddUserIcon/></StyledLink>
+          Don't have an account yet? <StyledLink to="sign-up" >Go to create an account<SignUpIcon/></StyledLink>
         </CallToAction>
       </Layout>
     )
