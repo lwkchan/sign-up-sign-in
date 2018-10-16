@@ -18,6 +18,7 @@ class App extends Component {
 		this.handleSignInSubmit = this.handleSignInSubmit.bind(this)
 		this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this)
 		this.createNewUser = this.createNewUser.bind(this)
+		this.getErrorMessage = this.getErrorMessage.bind(this)
 	}
 
 	componentDidMount () {
@@ -29,7 +30,11 @@ class App extends Component {
 		const { elements } = event.target,
 		email = elements.email.value,
 		password = elements.password.value
-		this.signInUser(email, password)
+		if (!email || !password) {
+			this.setState({ error: { message: 'Please fill in both fields' } })
+		} else {
+			this.signInUser(email, password)
+		}
 	}
 
 	signInUser(email, password) {
@@ -43,9 +48,22 @@ class App extends Component {
 			navigate('account-dashboard')
 		})
 		.catch(error => {
-			const { message } = error
+			const message = this.getErrorMessage(error)
 			this.setState({ error: { message } })
 		})
+	}
+
+	getErrorMessage({ code }) {
+		switch (code) {
+			case 'auth/user-not-found':
+				return 'This user does not exist in our records. Please try a different email or contact us if this is wrong'
+			case 'auth/invalid-email':
+				return 'Please enter a valid email address'
+			case 'auth/email-already-in-use':
+				return 'We already have the user in our records. Please try a different email or contact us if this is incorrect'
+			default:
+				return 'Something went wrong. Please try again'
+		}
 	}
 
 	handleSignUpSubmit (event) {
@@ -72,7 +90,8 @@ class App extends Component {
 				navigate('account-dashboard')
 			})
 			.catch(error => {
-				const { message } = error
+				console.log('error', error.code)
+				const message = this.getErrorMessage(error)
 				this.setState({ error: { message } })
 		})
 	}
