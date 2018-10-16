@@ -6,5 +6,6 @@ export const Layout = styled.div`
     margin: 80px auto 0 auto;
     @media (max-width: 425px) {
         padding: 0 15px;
+        margin-top: 10px
     }
 `
