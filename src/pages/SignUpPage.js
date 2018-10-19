@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Form from '../components/Form'
 import { Layout } from './Layout'
 import { UserEdit } from 'styled-icons/fa-solid/UserEdit'
+import { Helmet } from 'react-helmet'
 
 const SignUpIcon = styled(UserEdit)`
   height: 20px;
@@ -13,6 +14,9 @@ class SignUpPage extends Component {
     render() {
         return (
             <Layout>
+                <Helmet>
+                    <title>flatfair | Sign Up</title>
+                </Helmet>
                 <h1>Create account<SignUpIcon/></h1>
                 <Form
                     signUp

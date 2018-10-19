@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Form from '../components/Form'
 import { Layout } from './Layout'
 import { SignIn } from 'styled-icons/octicons/SignIn'
+import { Helmet } from 'react-helmet'
 
 const SignInIcon = styled(SignIn)`
   height: 20px;
@@ -13,6 +14,9 @@ class SignInPage extends Component {
     render() {
         return (
             <Layout>
+                <Helmet>
+                    <title>flatfair | Sign In</title>
+                </Helmet>
                 <h1>Sign In<SignInIcon/></h1>
                 <Form
                     signIn

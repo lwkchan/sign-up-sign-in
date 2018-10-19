@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Helmet } from 'react-helmet';
 import { Link } from '@reach/router'
 import styled from 'styled-components'
 import { Layout } from './Layout'
@@ -26,6 +27,9 @@ class LandingPage extends Component {
     render () {
       return (
       <Layout>
+        <Helmet>
+            <title>Welcome to flatfair</title>
+        </Helmet>
         <WelcomeHeader>Welcome to flatfair</WelcomeHeader>
         <CallToAction>
           Got an account already? <StyledLink to="sign-in">Go to sign in<SignInIcon/></StyledLink>
