@@ -45,6 +45,7 @@ ErrorMessage = styled.p`
 	text-align: center;
 `,
 QuestionIcon = styled(Question)`
+	color: #4195fc;
 	height: 20px;
 	margin: auto 20px;
 `
