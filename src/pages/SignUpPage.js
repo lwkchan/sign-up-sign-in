@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import { UserEdit } from 'styled-icons/fa-solid/UserEdit'
+import { Helmet } from 'react-helmet'
 import styled from 'styled-components'
 import Form from '../components/Form'
 import { Layout } from './Layout'
-import { UserEdit } from 'styled-icons/fa-solid/UserEdit'
-import { Helmet } from 'react-helmet'
 
 const SignUpIcon = styled(UserEdit)`
   height: 20px;

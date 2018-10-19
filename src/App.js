@@ -5,7 +5,28 @@ import AccountPage from './pages/AccountPage'
 import LandingPage from './pages/LandingPage'
 import SignInPage from './pages/SignInPage'
 import SignUpPage from './pages/SignUpPage'
-import { Router, navigate } from '@reach/router'
+import { Router, navigate, Location } from '@reach/router'
+import posed, { PoseGroup } from 'react-pose'
+
+const RouteContainer = posed.div(
+	{
+		enter: { opacity: 1,
+				y: 50,
+				delay: 500 },
+		exit: { opacity: 0,
+				y: 0 }
+	}),
+PosedRouter = ({ children }) => (
+	<Location>
+	{({ location }) => (
+		<PoseGroup>
+			<RouteContainer key={location.key}>
+				<Router location={location}>{children}</Router>
+			</RouteContainer>
+		</PoseGroup>
+	)}
+	</Location>
+)
 
 class App extends Component {
 	constructor() {
@@ -90,16 +111,15 @@ class App extends Component {
 				navigate('account-dashboard')
 			})
 			.catch(error => {
-				console.log('error', error.code)
 				const message = this.getErrorMessage(error)
 				this.setState({ error: { message } })
 		})
 	}
 
-	render() {
+		render() {
 		return (
 			<div className="app">
-				<Router>
+				<PosedRouter>
 					<LandingPage
 						path="/"
 						error={this.state.error}
@@ -115,10 +135,10 @@ class App extends Component {
 					<AccountPage
 						path="account-dashboard"
 						email={this.state.email}/>
-				</Router>
+				</PosedRouter>
 			</div>
 			)
 		}
-	}
+}
 
-	export default App
+export default App
