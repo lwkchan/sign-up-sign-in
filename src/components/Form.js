@@ -1,44 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Question } from 'styled-icons/octicons/Question'
-import Tippy from '@tippy.js/react'
 import posed from 'react-pose'
-import 'tippy.js/dist/tippy.css'
+import FormEntry from './FormEntry'
 
 const PosedForm = posed.form({
 	enter: { staggerChildren: 300 }
   }),
-Entry = posed.div({
-	enter: { x: 0, opacity: 1 },
-	exit: { x: -50, opacity: 0 },
-	preEnterPose: { x: 50, opacity: 0 }
-}),
 StyledForm = styled(PosedForm)`
 	display: flex;
 	flex-direction: column;`,
-Label = styled.label`
-	flex-grow: 2;
-`,
-LabelText = styled.span`
-	font-size: 20px;
-	font-weight: bold;
-`,
-PosedEntry = styled(Entry)`
-	display: flex
-`,
-Input = styled.input`
-	border: 1px solid #4195fc;
-	border-radius: 5px;
-	margin-bottom: 20px;
-	min-height: 60px;
-	font-size: 20px;
-	width: 100%;
-	:focus {
-		outline: none;
-		border-color: #01A9DB;
-		box-shadow: 0 0 2px #01A9DB;
-	}
-`,
 SubmitButton = styled.button`
 	background: #4195fc;
 	border-radius: 25px;
@@ -52,11 +22,6 @@ SubmitButton = styled.button`
 ErrorMessage = styled.p`
 	color: #FA5858;
 	text-align: center;
-`,
-QuestionIcon = styled(Question)`
-	color: #4195fc;
-	height: 20px;
-	margin: auto 20px;
 `
 
 class Form extends Component {
@@ -98,63 +63,39 @@ class Form extends Component {
 				<StyledForm
 					className={`form ${this.getModifierClassName(this)}`}
 					onSubmit={this.props.handleSubmit}>
-					<PosedEntry>
-						<Label> <LabelText>Email</LabelText>
-							<Input
-							type="text"
-							name="email"
-							value={this.state.email}
-							onChange={this.handleInputChange} />
-						</Label>
-						<Tippy
-							content={this.props.signUp ? 'Please enter a valid email address which has not been used on this site before'
-									: 'Please enter the email address you created an account with'
-							}
-							trigger="mouseenter focus"
-							placement="right">
-							<QuestionIcon/>
-						</Tippy>
-					</PosedEntry>
-					<PosedEntry>
-						<Label> <LabelText>Password</LabelText>
-							<Input
-							type="password"
-							name="password"
-							value={this.state.password}
-							onChange={this.handleInputChange} />
-						</Label>
-						<Tippy
-							content={this.props.signUp ? 'Use a password with over eight characters and a mixture of letters and numbers.'
-									: 'Please enter the password you signed-up with'}
-							trigger="mouseenter focus"
-							placement="right">
-							<QuestionIcon/>
-						</Tippy>
-					</PosedEntry>
+					<FormEntry
+						label="Email"
+						name="email"
+						value={this.props.email}
+						handleInputChange={this.handleInputChange}
+						tooltipContent="Please enter a valid email address with '@' and a domain name e.g. 'example@flatfair.co.uk'"
+					/>
+					<FormEntry
+						password
+						label="Password"
+						name="password"
+						value={this.state.password}
+						handleInputChange={this.handleInputChange}
+						tooltipContent={this.props.signUp ? 'Use a password with over eight characters and a mixture of letters and numbers.'
+						: 'Please enter the password you signed-up with'}
+					/>
 					{this.props.signUp &&
-						<PosedEntry>
-							<Label> <LabelText>Re-enter Password</LabelText>
-							<Input
-							type="password"
+						<FormEntry
+							password
+							label="Re-enter Password"
 							name="confirmPassword"
 							value={this.state.confirmPassword}
-							onChange={this.handleInputChange} />
-							</Label>
-							<Tippy
-								content="Rewrite your password here to confirm it is correct"
-								trigger="mouseenter focus"
-								placement="right">
-								<QuestionIcon/>
-							</Tippy>
-						</PosedEntry>
+							handleInputChange={this.handleInputChange}
+							tooltipContent={'Rewrite your password here to confirm it is correct'}
+						/>
 					}
 					<SubmitButton error={this.props.error} name="Submit" type="submit" value="Submit">Submit</SubmitButton>
 				</StyledForm>
 				<ErrorMessage>{this.props.error.message}</ErrorMessage>
 			</>
-			)
-		}
+		)
 	}
+}
 
 	export default Form
 
