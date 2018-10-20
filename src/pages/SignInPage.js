@@ -13,8 +13,11 @@ const SignInIcon = styled(SignIn)`
 `,
 StyledLink = styled(Link)`
     color: #4195fc;
+    display: inline-block;
+    transition: transform .3s ease-out;
     &:hover {
         text-decoration: none;
+        transform: translateX(-8px);
     }
 `,
 BackArrowIcon = styled(ArrowLeft)`
