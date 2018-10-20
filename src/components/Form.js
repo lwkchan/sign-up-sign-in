@@ -2,9 +2,18 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Question } from 'styled-icons/octicons/Question'
 import Tippy from '@tippy.js/react'
+import posed from 'react-pose'
 import 'tippy.js/dist/tippy.css'
 
-const StyledForm = styled.form`
+const PosedForm = posed.form({
+	enter: { staggerChildren: 300 }
+  }),
+Entry = posed.div({
+	enter: { x: 0, opacity: 1 },
+	exit: { x: -50, opacity: 0 },
+	preEnterPose: { x: 50, opacity: 0 }
+}),
+StyledForm = styled(PosedForm)`
 	display: flex;
 	flex-direction: column;`,
 Label = styled.label`
@@ -14,7 +23,7 @@ LabelText = styled.span`
 	font-size: 20px;
 	font-weight: bold;
 `,
-Entry = styled.div`
+PosedEntry = styled(Entry)`
 	display: flex
 `,
 Input = styled.input`
@@ -33,7 +42,7 @@ Input = styled.input`
 SubmitButton = styled.button`
 	background: #4195fc;
 	border-radius: 25px;
-	box-shadow: ${props => props.error ? '0 0 2px #FA5858':''};
+	box-shadow: ${props => props.error ? '0 0 2px #FA5858' : ''};
 	font-size: 20px;
 	height: 60px
 	margin: 0 auto;
@@ -89,7 +98,7 @@ class Form extends Component {
 				<StyledForm
 					className={`form ${this.getModifierClassName(this)}`}
 					onSubmit={this.props.handleSubmit}>
-					<Entry>
+					<PosedEntry>
 						<Label> <LabelText>Email</LabelText>
 							<Input
 							type="text"
@@ -98,13 +107,15 @@ class Form extends Component {
 							onChange={this.handleInputChange} />
 						</Label>
 						<Tippy
-							content="Please enter a valid email address which has not been used on this site before"
+							content={this.props.signUp ? 'Please enter a valid email address which has not been used on this site before'
+									: 'Please enter the email address you created an account with'
+							}
 							trigger="mouseenter focus"
 							placement="right">
 							<QuestionIcon/>
 						</Tippy>
-					</Entry>
-					<Entry>
+					</PosedEntry>
+					<PosedEntry>
 						<Label> <LabelText>Password</LabelText>
 							<Input
 							type="password"
@@ -113,14 +124,15 @@ class Form extends Component {
 							onChange={this.handleInputChange} />
 						</Label>
 						<Tippy
-							content="Use a password with over eight characters and a mixture of letters and numbers."
+							content={this.props.signUp ? 'Use a password with over eight characters and a mixture of letters and numbers.'
+									: 'Please enter the password you signed-up with'}
 							trigger="mouseenter focus"
 							placement="right">
 							<QuestionIcon/>
 						</Tippy>
-					</Entry>
+					</PosedEntry>
 					{this.props.signUp &&
-						<Entry>
+						<PosedEntry>
 							<Label> <LabelText>Re-enter Password</LabelText>
 							<Input
 							type="password"
@@ -134,7 +146,7 @@ class Form extends Component {
 								placement="right">
 								<QuestionIcon/>
 							</Tippy>
-						</Entry>
+						</PosedEntry>
 					}
 					<SubmitButton error={this.props.error} name="Submit" type="submit" value="Submit">Submit</SubmitButton>
 				</StyledForm>
