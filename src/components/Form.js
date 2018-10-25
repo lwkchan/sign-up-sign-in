@@ -10,14 +10,43 @@ StyledForm = styled(PosedForm)`
 	display: flex;
 	flex-direction: column;`,
 SubmitButton = styled.button`
-	background: #4195fc;
-	border-radius: 25px;
-	box-shadow: ${props => props.error ? '0 0 2px #FA5858' : ''};
+	background-color: #fff;
+	border: 1px solid #4195fc;
+	border-radius: 10px;
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	cursor: pointer;
+	display: inline-block;
 	font-size: 20px;
+	font-weight: bold;
 	height: 60px
 	margin: 0 auto;
 	outline: 0;
+	overflow: hidden;
+	transform: perspective(1px) translateZ(0);
+	transition-property: color;
+	transition-duration: 0.3s;
 	width: 50%;
+	&:before{
+		content: '';
+		z-index: -1;
+		background-color: #4195fc;
+		border-radius: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		transform: scale(0);
+		transition-property: transform;
+		transition-duration: 0.3s;
+		transition-timing-function: ease-out;
+	}
+	&:hover{
+		color: white;
+	}
+	&:hover&:before{
+		transform: scale(2);
+	}
 `,
 ErrorMessage = styled.p`
 	color: #FA5858;
