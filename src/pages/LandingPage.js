@@ -24,7 +24,9 @@ SignUpIcon = styled(UserEdit)`
   margin-left: 5px;
 `,
 WelcomeHeader = styled.h1``,
-CallToAction = styled.p``
+CallToAction = styled.p`
+  margin-bottom: 25px;
+`
 
 class LandingPage extends Component {
     render () {
