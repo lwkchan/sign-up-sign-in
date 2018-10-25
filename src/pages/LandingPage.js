@@ -8,17 +8,20 @@ import { UserEdit } from 'styled-icons/fa-solid/UserEdit'
 
 const StyledLink = styled(Link)`
   color: #4195fc;
+  display: inline-block;
+  transition: transform .3s ease-out;
   &:hover {
-    text-decoration: none;
+      text-decoration: none;
+      transform: translateX(8px);
   }
 `,
 SignInIcon = styled(SignIn)`
   height: 20px;
-  margin: 5px;
+  margin-left: 5px;
 `,
 SignUpIcon = styled(UserEdit)`
   height: 20px;
-  margin: 5px;
+  margin-left: 5px;
 `,
 WelcomeHeader = styled.h1``,
 CallToAction = styled.p``
@@ -32,10 +35,10 @@ class LandingPage extends Component {
         </Helmet>
         <WelcomeHeader>Welcome to flatfair</WelcomeHeader>
         <CallToAction>
-          Got an account already? <StyledLink to="sign-in">Go to sign in<SignInIcon/></StyledLink>
+          Don't have an account yet? <StyledLink to="sign-up" >Go to create an account<SignUpIcon/></StyledLink>
         </CallToAction>
         <CallToAction>
-          Don't have an account yet? <StyledLink to="sign-up" >Go to create an account<SignUpIcon/></StyledLink>
+          Got an account already? <StyledLink to="sign-in">Go to sign in<SignInIcon/></StyledLink>
         </CallToAction>
       </Layout>
     )
